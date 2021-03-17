@@ -4,7 +4,7 @@
 # Class Name: Ops 301
 # Author Name: Carsten Rossen
 # Date of Latest Revision: 3/17/21
-# Purpose: 
+# Purpose: Sends a user-selected HTTP request to a URL of the user's choice
 
 # Import libraries
 import requests as req 
@@ -13,7 +13,8 @@ import requests as req
 options = ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'PATCH', 'OPTIONS']
 
 
-# Main
+# Declaration of functions
+
 def pick_request():
     url = input('What is the destination URL? ')
     print('\nHTTP Method options:')
@@ -44,15 +45,26 @@ def pick_request():
 
     return answers
     
+
+# Main
+
 answers = pick_request()
 
 response = getattr(req, answers[0].lower())(answers[1])
-print(response)
+sc = response.status_code
+if 100 <= sc and sc <= 199:
+    print('\nInformational response.')
+elif 200 <= sc and sc <= 299:
+    print('\nSuccessful response.')
+elif 300 <= sc and sc <= 399:
+    print('\nRedirection response.')
+elif 400 <= sc and sc <= 499:
+    print('\nClient error.')
+elif 500 <= sc and sc <= 599:
+    print('\nServer error.')
+
+print('\nHeader information:')
+print(response.headers)
 
 
-    
-
-
-
-
-# print(req.get(url))
+# End
