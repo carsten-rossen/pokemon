@@ -3,24 +3,23 @@
 # Script Name: Network Security Tool with Scapy
 # Class Name: Ops 401
 # Author Name: Carsten Rossen
-# Date of Latest Revision: 4/19/21
+# Date of Latest Revision: 4/21/21
 # Purpose: Scans specified ports on a specified host.
+# NOTE: Please run in sudo
 
 # Import libraries
-
 
 from scapy.all import ICMP, IP, sr1, TCP
 import random
 import ipaddress
 import os
+from arprequest import ArpRequest
 
 
 # Declare functions
 
-def tcp_scanner():
-    # input host
-    ip = input("Please specify host IP address: ")
-
+# Scan the ports of a host
+def tcp_scanner(ip):
     # generate source port
     src_port = random.randint(1025, 65534)
     dst_ports = []
@@ -59,10 +58,8 @@ def tcp_scanner():
             ):
                 print(f"{ip}:{port} is filtered (silently dropped).")
 
-def ping_sweep():
-    network_address = input("Please specify a network address: ")
-    network = ipaddress.ip_network(network_address)
-
+# ping ip addresses on the network
+def ping_sweep(network):
     index = 0
     active_count = 0
     for ip in network:
@@ -81,18 +78,38 @@ def ping_sweep():
     
     print(f"There are {active_count} hosts online.")
 
+# ARP request the hosts on the network
+def arp(network):
+    index = 0
+    for ip in network:
+        if index != 0 and index != 1:
+            ar = ArpRequest(ip, 'eth0')
+            active = ar.request()
+            if active:
+                tcp_scanner(ip)
+        
+        index+=1
+
 
 # Main
 
+# Menu system
 print("Would you like to run this program in:")
-print("   1. TCP Port Range Scanner mode")
+print("   1. TCP Port Range Scanner Mode")
 print("   2. ICMP Ping Sweep Mode")
-menu_choice = input("\nPlease specify choice (1/2): ")
+print("   3. ARP Mode")
+menu_choice = input("\nPlease specify choice (1/2/3): ")
 
 if menu_choice == "1":
-    tcp_scanner()
-elif menu_choice == "2":
-    ping_sweep()
+    ip = input("Please specify host IP address: ")
+    tcp_scanner(ip)
+elif menu_choice == "2" or menu_choice == "3":
+    network_address = input("Please specify a network address: ")
+    network = ipaddress.ip_network(network_address)
+    if menu_choice == "2":
+        ping_sweep(network)
+    else:
+        arp(network)
 else:
     print("IMPROPER COMMAND. TERMINATING PROGRAM.")
 
