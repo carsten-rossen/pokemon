@@ -11,6 +11,7 @@
 # Import libraries
 
 import time, paramiko, sys, socket
+from zipfile import ZipFile
 
 
 # Declare functions
@@ -19,8 +20,9 @@ import time, paramiko, sys, socket
 def menu():
     print("Which mode would you like to enter?")
     print("   1. Offensive; SSH Hacker")
-    print("   2. Defensive; Password Recognizer")
-    print("   3. Quit")
+    print("   2. Offensive; ZIP Hacker")
+    print("   3. Defensive; Password Recognizer")
+    print("   4. Quit")
     choice = input("\n(1/2/3) >>> ")
     return choice
 
@@ -104,6 +106,33 @@ def defensive():
         else:
             print("\nThe string did not appear in the word list.")
 
+# Attempts to open an encrypted zip file using passwords from a word list
+def ziphack():
+    # gets the file path for the word list and the zip file
+    wordlist = input("\nFull file path of word list: ")
+    zip_file = input("Full file path of zip file: ")
+    
+    # opens the word list
+    with open(wordlist, 'r') as file:
+        # puts all of the file's words into a list
+        words = list(file.read().split())
+   
+        # attempts to open zip file
+        with ZipFile(zip_file) as zf:
+            for word in words:
+                try:
+                    # tries a password in the word list
+                    zf.extractall(pwd=bytes(word,'utf-8'))
+                except: 
+                    # password did not work
+                    print(f"Failed to open zip file with password: {word}")
+                else:
+                    # password did work
+                    print(f"Succeeded to open zip file with password: {word}")
+                    exit(0)
+        # None of the passwords from the word list worked
+        print("\nPassword not found in this word list.\n")
+
 
 # Main
 
@@ -114,12 +143,14 @@ while True:
     if choice == "1":
         offensive()
     elif choice == "2":
-        defensive()
+        ziphack()
     elif choice == "3":
+        defensive()
+    elif choice == "4":
         quit()
     else:
         # Display the menu system again if the user input is faulty.
-        print("Error: Only enter 1, 2, or 3.\n")
+        print("Error: Only enter 1, 2, 3, or 4.\n")
 
 
 # End
