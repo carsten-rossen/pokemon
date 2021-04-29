@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-# Script Name: Automated Brute Force Wordlist Attack Tool Part 2 of 3
+# Script Name: Automated Brute Force Wordlist Attack Tool Part 3 of 3
 # Class Name: Ops 401
 # Author Name: Carsten Rossen
-# Date of Latest Revision: 4/27/21 
+# Date of Latest Revision: 4/28/21 
 # Purpose: Searches a text file for a specified string, or attempts to authenticate into
 # Purpose: a specified user, host, and password list, using SSH on a specified port.
+# Purpose: Can also attempt to open an encrypted zip file.
 
 
 # Import libraries
