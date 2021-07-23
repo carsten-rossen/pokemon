@@ -10,12 +10,22 @@
 import string
 
 # Define functions
+def char_list_maker():
+    char_list = []
+    for i in range(len(string.ascii_uppercase)):
+        char_list.append(string.ascii_uppercase[i])
+    for i in range(len(string.digits)):
+        char_list.append(string.digits[i])
+    for i in range(len(string.punctuation)):
+        char_list.append(string.punctuation[i])
+    return char_list
+
 def prompt():
     print("Welcome to the Caesar Cipher program. Would you like to...")
     print("   1. Encrypt")
     print("   2. Decrypt")
     while(True):
-        choice = input("Please only input 1 or 2")
+        choice = input("Please only input 1 or 2: ")
         if choice == "1" or choice == "2":
             return choice
 
@@ -30,14 +40,15 @@ def key_prompt():
     return int(key)
 
 
-def encrypt_decrypt(msg, key, choice):
-    new_msg = ""
+def encrypt_decrypt(char_list, choice):
     if choice == "1":
         msg = input("Message to encrypt: ")
-        key = key_prompt
+        key = key_prompt()
+        new_msg = "Your encrypted message is: "
     else:
         msg = input("Message to decrypt: ")
-        key = 0 - key_prompt
+        key = 0 - key_prompt()
+        new_msg = "Your decrypted message is: "
     msg = msg.upper()
     for i in range(len(msg)):
         if msg[i] not in string.whitespace:
@@ -49,19 +60,11 @@ def encrypt_decrypt(msg, key, choice):
     return new_msg
 
 
+
 # Main
-
-char_list = []
-for i in range(len(string.ascii_uppercase)):
-    char_list.append(string.ascii_uppercase[i])
-for i in range(len(string.digits)):
-    char_list.append(string.digits[i])
-for i in range(len(string.punctuation)):
-    char_list.append(string.punctuation[i])
-
+char_list = char_list_maker()
 choice = prompt()
-key = key_prompt()
-msg = encrypt_decrypt(msg, key)
-print("Your encrypted message is: " + msg)
+msg = encrypt_decrypt(char_list, choice)
+print(msg)
 
 # End
