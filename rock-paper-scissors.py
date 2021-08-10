@@ -11,6 +11,7 @@ import random
 # Define functions
 def round():
     choice = input("Would you like to guess rock, paper, or scissors? (1/2/3): ")
+    print()
     if not (choice == "1" or choice == "2" or choice == "3"):
         print("Please only input a 1, 2, or 3.")
         choice = round()
@@ -36,7 +37,7 @@ def choice_is(choice):
 
 
 def play_again():
-    result = input("Would you like to play another round? (y/n): ")
+    result = input("\nWould you like to play another round? (y/n): ")
     if result == "y":
         return True
     elif result == "n":
