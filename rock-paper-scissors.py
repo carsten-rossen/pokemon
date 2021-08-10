@@ -14,14 +14,17 @@ COUNT_COMP = 0
 COUNT_ROUNDS = 0
 
 # Define functions
+# Prompts the user for a choice between rock, paper, and scissors
 def round():
     choice = input("Would you like to guess rock, paper, or scissors? (1/2/3): ")
     print()
+    # User must input only rock, paper, or scissors (no lizard or Spock)
     if not (choice == "1" or choice == "2" or choice == "3"):
         print("Please only input a 1, 2, or 3.")
         choice = round()
     return choice
 
+# Prints the result of the round
 def result(choice, computer_choice):
     COUNT_ROUNDS += 1
     if choice == computer_choice:
