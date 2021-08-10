@@ -8,6 +8,11 @@
 # Import libraries
 import random
 
+# Define variables
+COUNT_USER = 0
+COUNT_COMP = 0
+COUNT_ROUNDS = 0
+
 # Define functions
 def round():
     choice = input("Would you like to guess rock, paper, or scissors? (1/2/3): ")
@@ -18,13 +23,17 @@ def round():
     return choice
 
 def result(choice, computer_choice):
+    COUNT_ROUNDS += 1
     if choice == computer_choice:
         print("This round was a tie.")
     else:
         if (choice == "1" and computer_choice == "2") or (choice == "2" and computer_choice == "3") or (choice == "3" and computer_choice == "1"):
             print("The computer has won this round!")
+            COUNT_COMP += 1
         else:
             print("You have won this round!")
+            COUNT_USER += 1
+        print(f'You have won {COUNT_USER/COUNT_ROUNDS}% of the rounds.')
         
 
 def choice_is(choice):
