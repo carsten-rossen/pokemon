@@ -4,7 +4,7 @@
 # Author Name: Carsten Rossen
 # Date of Latest Revision: 8/19/21 
 # Purpose: This program will convert between currencies using the a GUI interface. 
-# I will achieve this with the Tkinter library. (Learning from this video: https://www.youtube.com/watch?v=YXPyB4XeYLA) 19:30
+# I will achieve this with the Tkinter library. (Learning from this video: https://www.youtube.com/watch?v=YXPyB4XeYLA) 29:31
 
 # Import libraries
 from tkinter import *
