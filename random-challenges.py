@@ -7,7 +7,7 @@
 # Each function represents a solution to a challenge found on this website.
 
 
-# Challenges (functions)
+# Challenge solutions (functions)
 
 # Tic Tac Toe Input
 import string
@@ -16,5 +16,12 @@ def get_row_col(location):
     y = int(location[1]) - 1
     return (x,y)
 
-# Main
-print(get_row_col('A3'))
+# Palindrome
+def palindrome(string):
+    for i in range(len(string)):
+        if string[i] != string[len(string) - 1 - i]:
+            return False
+    return True
+
+# Main (for testing purposes)
+print(palindrome("abcd"))
