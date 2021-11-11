@@ -7,7 +7,7 @@
 # Each function represents a solution to a challenge found on this website.
 
 
-# Challenges (functions)
+# Challenge solutions (functions)
 
 # Tic Tac Toe Input
 import string
@@ -16,5 +16,30 @@ def get_row_col(location):
     y = int(location[1]) - 1
     return (x,y)
 
-# Main
-print(get_row_col('A3'))
+# Palindrome
+def palindrome(string):
+    for i in range(len(string)):
+        if string[i] != string[len(string) - 1 - i]:
+            return False
+    return True
+
+# Up and down
+def up_down(number):
+    return(number - 1, number + 1)
+
+# Consecutive zeros
+def consecutive_zeros(string):
+    count = 0
+    new_count = 0
+    for char in string:
+        if char == '1':
+            new_count = 0
+        else: 
+            new_count += 1
+            if new_count > count:
+                count = new_count
+    return count
+
+
+# Main (for testing purposes)
+print(consecutive_zeros('010010'))
