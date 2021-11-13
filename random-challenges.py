@@ -23,5 +23,23 @@ def palindrome(string):
             return False
     return True
 
+# Up and down
+def up_down(number):
+    return(number - 1, number + 1)
+
+# Consecutive zeros
+def consecutive_zeros(string):
+    count = 0
+    new_count = 0
+    for char in string:
+        if char == '1':
+            new_count = 0
+        else: 
+            new_count += 1
+            if new_count > count:
+                count = new_count
+    return count
+
+
 # Main (for testing purposes)
-print(palindrome("abcd"))
+print(consecutive_zeros('010010'))
