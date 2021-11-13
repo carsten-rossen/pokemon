@@ -16,6 +16,7 @@ def get_row_col(location):
     y = int(location[1]) - 1
     return (x,y)
 
+
 # Palindrome
 def palindrome(string):
     for i in range(len(string)):
@@ -23,9 +24,11 @@ def palindrome(string):
             return False
     return True
 
+
 # Up and down
 def up_down(number):
     return(number - 1, number + 1)
+
 
 # Consecutive zeros
 def consecutive_zeros(string):
@@ -55,5 +58,10 @@ def triple_and(x, y, z):
         return False
     return 1 and True
 
+
+# Writing Short Code
+def convert(numbers):
+    return [str(num) for num in numbers]
+
 # Main (for testing purposes)
-print(triple_and(True, True, True))
+print(convert([1,2,3]))
