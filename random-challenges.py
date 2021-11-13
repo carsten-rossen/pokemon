@@ -42,4 +42,8 @@ def consecutive_zeros(string):
 
 
 # Main (for testing purposes)
+<<<<<<< HEAD
 print(consecutive_zeros('010010'))
+=======
+print(consecutive_zeros('010010'))
+>>>>>>> 1531b403f95b93dcd8e60be9f16451465b3c340b
