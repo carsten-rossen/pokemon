@@ -41,9 +41,12 @@ def consecutive_zeros(string):
     return count
 
 
+# All equal
+def all_equal(lst):
+    for element in lst:
+        if element != lst[0]:
+            return False
+    return True
+
 # Main (for testing purposes)
-<<<<<<< HEAD
-print(consecutive_zeros('010010'))
-=======
-print(consecutive_zeros('010010'))
->>>>>>> 1531b403f95b93dcd8e60be9f16451465b3c340b
+print(all_equal([1,2,1]))
