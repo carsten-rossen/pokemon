@@ -48,5 +48,12 @@ def all_equal(lst):
             return False
     return True
 
+
+# Boolean and
+def triple_and(x, y, z):
+    if x != True or y != True or z != True:
+        return False
+    return 1 and True
+
 # Main (for testing purposes)
-print(all_equal([1,2,1]))
+print(triple_and(True, True, True))
