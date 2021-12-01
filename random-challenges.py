@@ -63,5 +63,15 @@ def triple_and(x, y, z):
 def convert(numbers):
     return [str(num) for num in numbers]
 
+
+# List xor
+def list_xor(n, list1, list2):
+    if n in list1 and n in list2:
+        return False
+    elif n not in list1 and n not in list2:
+        return False
+    else:
+        return True
+
 # Main (for testing purposes)
 print(convert([1,2,3]))
