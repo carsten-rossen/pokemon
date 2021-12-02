@@ -78,5 +78,19 @@ def list_xor(n, list1, list2):
 def param_count(*args):
     return len(args)
 
+
+# Thousands separator
+def format_number(num):
+    snum = ''
+    while num // 1000 > 0:
+        if num % 1000 == 0:
+            nextval = "000"
+        else:
+            nextval = str(num % 1000)
+        snum  = "," + nextval + snum
+        num = num // 1000
+    snum = str(num) + snum
+    return snum 
+
 # Main (for testing purposes)
 print(convert([1,2,3]))
