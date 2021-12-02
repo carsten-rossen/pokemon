@@ -73,5 +73,10 @@ def list_xor(n, list1, list2):
     else:
         return True
 
+
+# Counting parameters
+def param_count(*args):
+    return len(args)
+
 # Main (for testing purposes)
 print(convert([1,2,3]))
